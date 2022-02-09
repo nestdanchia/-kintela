@@ -1,0 +1,176 @@
+<app-listado-generico [listado]="ofertas">
+<!--<ng-container vacio>
+  <div>
+    No se ha cargado correctamente la lista de ofertas. Ponte en contacto con Roberto Quintela
+    (rquintela@fulcrum.es)
+  </div>
+</ng-container>
+
+<ng-container cargando>
+</ng-container>-->
+
+<ng-container contenido>
+  <h5>{{dataSource.filteredData.length}} coincidencias</h5>
+
+  <mat-form-field appearance="standard">
+    <mat-label>Filtrar</mat-label>
+    <input matInput (keyup)="filtrar($event)" #input [(ngModel)]="filtro">
+  </mat-form-field>
+
+  <mat-table [dataSource]="dataSource" multiTemplateDataRows matSort class="mat-elevation-z8">
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select" *ngIf="origen!='ofertas'">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox>
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="seleccionar(row)" [checked]="selection.isSelected(row)"
+          (change)="$event ? selection.toggle(row) : null">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let element">{{element.id}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="idPresentada">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id Presentada</th>
+      <td mat-cell *matCellDef="let element">{{element.idPresentada}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="adjudicada">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Adjudicada</th>
+      <td mat-cell *matCellDef="let element"
+        [matTooltip]="element.adjudicada.includes('UTE')?mostrarUTES(element):''">{{element.adjudicada}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="descripcion" *ngIf="origen!='ofertas'">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Descripción</th>
+      <td mat-cell *matCellDef="let element">{{element.descripcion}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="descripcion" *ngIf="origen=='ofertas'">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Descripción</th>
+      <td mat-cell *matCellDef="let element" [satPopoverAnchor]="p" (click)="p.open()">
+        {{element.descripcion}}
+        <sat-popover #p [hasBackdrop]="true" xAlign="start" yAlign="start"
+          (closed)="updateDescripcion(element, $event)">
+          <inline-edit [value]="element.descripcion" [origen]=''></inline-edit>
+        </sat-popover>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="organismo" *ngIf="origen=='ofertas'">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Organismo</th>
+      <td mat-cell *matCellDef="let element" [satPopoverAnchor]="p" (click)="p.open()">
+        {{element.organismoNombre}}
+        <sat-popover #p [hasBackdrop]="true" xAlign="start" yAlign="start"
+          (closed)="updateOrganismo(element, $event)">
+          <select-edit [value]="element.organismoNombre" [origen]="'organismos'"></select-edit>
+        </sat-popover>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fechaPresentacion" *ngIf="origen!='ofertas'">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Fª Presentación</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.fechaPresentacionFulcrum | date:'dd/MM/yyyy'}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fechaPresentacion" *ngIf="origen=='ofertas'">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Fª Presentación</th>
+      <td mat-cell *matCellDef="let element" [satPopoverAnchor]="p" (click)="p.open()">
+        {{element.fechaPresentacionFulcrum | date:'dd/MM/yyyy'}}
+        <sat-popover #p [hasBackdrop]="true" xAlign="start" yAlign="start"
+          (closed)="updateFechaPresentacion(element, $event)">
+          <inline-edit [value]="element.fechaPresentacionFulcrum | date:'dd/MM/yyyy'"></inline-edit>
+        </sat-popover>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="presupuesto" *ngIf="origen=='ofertas'">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Presupuesto</th>
+      <td mat-cell *matCellDef="let element" [satPopoverAnchor]="p" (click)="p.open()">
+        {{element.presupuesto | currency: 'EUR'}}
+        <sat-popover #p [hasBackdrop]="true" xAlign="start" yAlign="start"
+          (closed)="updatePresupuesto(element, $event)">
+          <inline-edit [value]="element.presupuesto"></inline-edit>
+        </sat-popover>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="responsableOferta" *ngIf="origen=='ofertas'">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Responsable Oferta</th>
+      <td mat-cell *matCellDef="let element" [satPopoverAnchor]="p" (click)="p.open()">
+        {{element.responsableOfertaNombre}}
+        <sat-popover #p [hasBackdrop]="true" xAlign="start" yAlign="start"
+          (closed)="updateResponsableOferta(element, $event)">
+          <select-edit [value]="element.responsableOfertaNombre" [origen]="'responsables'"></select-edit>
+        </sat-popover>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="responsableTecnico" *ngIf="origen=='ofertas'">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Responsable Técnico</th>
+      <td mat-cell *matCellDef="let element" [satPopoverAnchor]="p" (click)="p.open()">
+        {{element.responsableTecnicoNombre}}
+        <sat-popover #p [hasBackdrop]="true" xAlign="start" yAlign="start"
+          (closed)="updateResponsableTecnico(element, $event)">
+          <select-edit [value]="element.responsableTecnicoNombre" [origen]="'responsables'"></select-edit>
+        </sat-popover>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="origen" *ngIf="origen=='ofertas'">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Origen</th>
+      <td mat-cell *matCellDef="let element; let i=index">{{element.origen}}</td>
+    </ng-container>
+
+
+
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+        <div class="element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+          <div class="element-diagram" *ngIf="element.concurso!=null">
+            <h6>Concurso</h6>
+            <div> Fichero Recibido: {{element.concurso?.archivo}} </div>
+            <div> Importe: {{element.concurso?.importe | currency:'EUR'}} </div>
+            <div> web: {{element.concurso?.webInfo}} </div>
+            <div> Publcación: {{element.concurso?.publicacion}} </div>
+            <div> Descripción: {{element.concurso?.descripcion}} </div>
+          </div>
+          <div class="element-diagram" *ngIf="element.invitacion!=null">
+            <h6>Invitación</h6>
+            <div> Plazo: {{element.invitacion?.plazo}} </div>
+            <div> Clasificación: {{element.invitacion?.clasificacion}} </div>
+            <div> Expediente: {{element.invitacion?.expediente}} </div>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky:true"></tr>
+
+    <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (dblclick)="expandedElement = expandedElement === element ? null : element">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No se han encontrado coincidencias "{{input.value}}"</td>
+    </tr>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons aria-label="Select page of users">
+  </mat-paginator>
+
+</ng-container>
+</app-listado-generico>

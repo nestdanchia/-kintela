@@ -1,0 +1,45 @@
+<mat-toolbar color="primary">
+<span>
+  <a routerLink="" mat-button>
+    <mat-icon>event</mat-icon>Boletus
+  </a>
+</span>
+
+<div>
+  <a mat-button routerLink="ofertas/buscar">
+    <mat-icon>search</mat-icon>Ofertas
+  </a>
+</div>
+
+<div>
+  <a mat-button routerLink="invitaciones/crear">
+    <mat-icon>add_card</mat-icon>Invitaciones
+  </a>
+</div>
+
+<div>
+  <a mat-button routerLink="concursos/buscar">
+    <mat-icon>search</mat-icon>Concursos
+  </a>
+</div>
+
+<div>
+  <a mat-button routerLink="plicas">Plicas</a>
+</div>
+
+<!--<div>
+  <a mat-button routerLink="avales">Avales</a>
+</div>-->
+
+<button mat-button [matMenuTriggerFor]="menu">Avales
+  <mat-icon>verified</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item routerLink="avales/crear">Añadir</button>
+  <button mat-menu-item routerLink="avales">Ver/Editar</button>
+</mat-menu>
+
+</mat-toolbar>
+
+
+

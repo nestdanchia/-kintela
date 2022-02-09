@@ -1,0 +1,55 @@
+<form (submit)="guardarCambios()" [formGroup]="form" #formDirective="ngForm">
+<div class="contenido">
+
+  <div class="campos">
+    <mat-form-field appearance="outline">
+      <mat-label>Descripción*</mat-label>
+      <!--<input formControlName="descripcion" matInput />-->
+      <textarea matInput formControlName="descripcion"></textarea>
+      <mat-error *ngIf="form.invalid">El campo Descripción es obligatorio</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Fecha de Presentación*</mat-label>
+      <input formControlName="fechaPresentacion" matInput [matDatepicker]="picker" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="form.invalid">El campo Fecha Presentación es obligatorio</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Plazo*</mat-label>
+      <input formControlName="plazo" matInput />
+      <mat-error *ngIf="form.invalid">El campo Plazo es obligatorio</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Clasificación</mat-label>
+      <input formControlName="clasificacion" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Expediente</mat-label>
+      <input formControlName="expediente" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Presupuesto*</mat-label>
+      <input formControlName="presupuesto" matInput />
+      <mat-error *ngIf="form.invalid">{{obtenerErrorCampoPresupuesto()}}</mat-error>
+    </mat-form-field>
+
+  </div>
+
+  <div class="organismos">
+    <h6>Organismo*</h6>
+    <app-buscador [modelo]="organismos" [origen]="'organismos'" (elementoSeleccionado)='onOrganismoSeleccionado($event)'></app-buscador>
+  </div>
+
+</div>
+
+<div>
+  <button mat-flat-button color="primary" [disabled]="form.invalid">Guardar Cambios</button>
+  <a mat-stroked-button routerLink="/">Cancelar</a>
+</div>
+</form>

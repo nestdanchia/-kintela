@@ -1,0 +1,11 @@
+<div>
+<div>
+  <h4>{{texto}}</h4>
+  <div mat-dialog-content class="mat-typography"></div>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button (click)="actualizarEstudiarConcursos()" [mat-dialog-close]="true" cdkFocusInitial>Aceptar</button>
+</div>
+</div>

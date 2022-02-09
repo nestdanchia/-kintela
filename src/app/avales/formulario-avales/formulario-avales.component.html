@@ -1,0 +1,110 @@
+<form (submit)="guardarCambios()" [formGroup]="form"  #formDirective="ngForm">
+<div class="contenido">
+  <div class="ofertas">
+    <app-listado-ofertas [ofertas]="ofertas" (ofertaSeleccionada)='onOfertaSeleccionada($event)'></app-listado-ofertas>
+  </div>
+  <div class="campos">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Campos Obligatorios</mat-panel-title>
+      </mat-expansion-panel-header>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Número*</mat-label>
+          <input formControlName="numero" matInput placeholder="Número" />
+          <mat-error *ngIf="form.invalid">El número es obligatorio</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Importe*</mat-label>
+          <input formControlName="importe" matInput placeholder="Importe"/>
+          <mat-error *ngIf="form.invalid">El importe es obligatorio y debe ser un valor numérico</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Tipo*</mat-label>
+          <mat-select formControlName="tipo" placeholder="Tipo">
+            <mat-option *ngFor="let tipo of tipoAvales" [value]="tipo.id">{{tipo.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Estado*</mat-label>
+          <mat-select formControlName="estado" placeholder="Estado">
+            <mat-option *ngFor="let estado of estadoAvales" [value]="id">{{id}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Avalista*</mat-label>
+          <mat-select formControlName="avalista" placeholder="Avalista">
+            <mat-option *ngFor="let avalista of avalistas" [value]="avalista.id">{{avalista.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Fechas</mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha Aval</mat-label>
+        <input formControlName="fechaAval" matInput [matDatepicker]="picker1" />
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+        <mat-error *ngIf="form.invalid">Se ha producido un error en el valor introducido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha Solicitud</mat-label>
+        <input formControlName="fechaSolicitud" matInput [matDatepicker]="picker2" />
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+        <mat-error *ngIf="form.invalid">Se ha producido un error en el valor introducido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha Anulacion</mat-label>
+        <input formControlName="fechaAnulacion" matInput [matDatepicker]="picker3" />
+        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+        <mat-datepicker #picker3></mat-datepicker>
+        <mat-error *ngIf="form.invalid">Se ha producido un error en el valor introducido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha Solicitud Devolución</mat-label>
+        <input formControlName="fechaSolicitudDevolucion" matInput [matDatepicker]="picker4" />
+        <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+        <mat-datepicker #picker4></mat-datepicker>
+        <mat-error *ngIf="form.invalid">Se ha producido un error en el valor introducido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha Recepción</mat-label>
+        <input formControlName="fechaRecepcion" matInput [matDatepicker]="picker5" />
+        <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+        <mat-datepicker #picker5></mat-datepicker>
+        <mat-error *ngIf="form.invalid">Se ha producido un error en el valor introducido</mat-error>
+      </mat-form-field>
+
+    </mat-expansion-panel>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Observaciones</mat-label>
+      <textarea formControlName="observaciones" matInput placeholder="Observaciones"></textarea>
+    </mat-form-field>
+
+  </div>
+
+</div>
+
+<div>
+  <button mat-flat-button color="primary" >Guardar Cambios</button>
+  <a mat-stroked-button routerLink="/avales">Cancelar</a>
+</div>
+</form>

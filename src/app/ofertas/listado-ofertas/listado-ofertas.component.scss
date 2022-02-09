@@ -1,0 +1,102 @@
+p{
+  max-width: 75px;
+  height: 44px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+img{
+  width: 75px;
+  height: 100px;
+}
+
+button{
+  margin-left: 1em;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-column-id {
+  width: 32px;
+  padding-right: 24px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.mat-column-idPresentada {
+  width: 32px;
+  padding-right: 24px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.mat-column-descripcion{
+  width: 1000px;
+  padding-left: 16px;
+  padding-right: 24px;
+  text-align: left;
+  font-size: 12px;
+}
+
+.mat-column-organismo{
+  width: 600px;
+  padding-right: 24px;
+  text-align: left;
+  font-size: 12px;
+}
+
+.mat-column-fechaPresentacion{
+  width: 60px;
+  padding-right: 24px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.mat-column-presupuesto{
+  width: 60px;
+  padding-right: 24px;
+  text-align: right;
+  font-size: 12px;
+}
+
+.element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.element-diagram {
+  min-width: 100px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 160px;
+}
+
+tr.element-row:not(.expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.element-row:not(.expanded-row):active {
+  background: #efefef;
+}
+
+.element-row td {
+  border-bottom-width: 0;
+}
+
+tr.detail-row {
+  height: 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+
+
+

@@ -1,0 +1,44 @@
+<h2>Buscar Concursos</h2>
+
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>Filtros avanzados</mat-panel-title>
+  </mat-expansion-panel-header>
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Años</mat-label>
+      <mat-select formControlName="años" multiple placeholder="Años">
+        <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Descripción</mat-label>
+      <input formControlName="descripcion" matInput placeholder="Descripción" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Organismo</mat-label>
+      <mat-select formControlName="organismoId" placeholder="Organismo">
+        <mat-option *ngFor="let organismo of organismos" [value]="organismo.id">{{organismo.nombre}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Estudiar</mat-label>
+      <mat-select formControlName="estudiar" placeholder="Estudiar">
+        <mat-option *ngFor="let opcion of opciones" [value]="opcion.value">
+          {{opcion.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <div class="contenedor-limpiar">
+      <button mat-flat-button (click)="limpiar()" color="warn">Limpiar</button>
+    </div>
+  </form>
+</mat-expansion-panel>
+
+
+<app-listado-concursos [concursos]="dataSource"></app-listado-concursos>

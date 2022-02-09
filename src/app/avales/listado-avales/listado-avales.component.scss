@@ -1,0 +1,60 @@
+table {
+  width: 100%;
+}
+
+.element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.element-diagram {
+  min-width: 100px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 160px;
+}
+
+tr.element-row:not(.expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.element-row:not(.expanded-row):active {
+  background: #efefef;
+}
+
+.element-row td {
+  border-bottom-width: 0;
+}
+
+tr.detail-row {
+  height: 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-header-cell{
+  padding-right: 12px;
+  text-align: center;
+}
+
+.mat-row .mat-cell {
+  font-size: 12px;
+  cursor: pointer;
+  padding-right: 12px;
+  text-align: center;
+}
+
+.mat-column-numero {
+  font-weight: bold;
+}
+
+
+
+
+
+

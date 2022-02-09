@@ -1,0 +1,202 @@
+p{
+  max-width: 75px;
+  height: 44px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+img{
+  width: 75px;
+  height: 100px;
+}
+
+button{
+  margin-left: 1em;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-column-id {
+  width: 32px;
+  padding-left: 12px;
+  padding-right: 12px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.mat-column-archivo {
+  width: 32px;
+  padding-right: 12px;
+  text-align: center;
+}
+
+.mat-column-estado {
+  width: 300px;
+  padding-right: 12px;
+  text-align: center;
+}
+
+.mat-column-organismo{
+  width: 600px;
+  padding-right: 12px;
+  text-align: left;
+}
+
+.mat-column-descripcion{
+  width: 100px;
+  padding-right: 12px;
+  text-align: left;
+}
+
+.mat-column-fechaOrientativa{
+  width: 60px;
+  padding-right: 12px;
+  text-align: center;
+}
+
+.mat-column-importe{
+  width: 60px;
+  padding-right: 16px;
+  text-align: right;
+}
+
+.mat-column-plazoEjecucion{
+  width: 500px;
+  padding-right: 12px;
+  text-align: left;
+}
+
+.mat-column-estudiar{
+  width: 50px;
+  padding-right: 12px;
+  text-align: center;
+}
+
+.mat-column-fechaArchivo{
+  width: 50px;
+  padding-right: 12px;
+  text-align: center;
+}
+
+.mat-column-tema{
+  width: 200px;
+  padding-right: 12px;
+  text-align: center;
+}
+
+.mat-column-expediente{
+  width: 200px;
+  padding-right: 12px;
+  text-align: center;
+}
+
+.mat-column-contrato{
+  width: 300px;
+  padding-right: 12px;
+  text-align: center;
+}
+
+.mat-column-formaAdjudicacion{
+  width: 300px;
+  padding-right: 12px;
+  text-align: center;
+}
+
+.mat-column-garantia{
+  width: 600px;
+  padding-right: 12px;
+  text-align: center;
+}
+
+.mat-column-administracion{
+  width: 200px;
+  padding-right: 12px;
+  text-align: center;
+}
+
+.mat-column-publicacion{
+  width: 600px;
+  padding-right: 12px;
+  text-align: center;
+}
+
+.mat-column-pais{
+  width: 200px;
+  padding-right: 12px;
+  text-align: center;
+}
+
+.mat-column-provincia{
+  width: 200px;
+  padding-right: 12px;
+  text-align: center;
+}
+
+.mat-column-ciudad{
+  width: 200px;
+  padding-right: 12px;
+  text-align: center;
+}
+
+
+.element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.element-diagram {
+  min-width: 100px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 160px;
+}
+
+tr.element-row:not(.expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.element-row:not(.expanded-row):active {
+  background: #efefef;
+}
+
+.element-row td {
+  border-bottom-width: 0;
+}
+
+tr.detail-row {
+  height: 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.row-is-clicked-green {
+  background-color: green;
+}
+
+.row-is-clicked-red {
+  background-color: red;
+}
+
+.row-is-clicked-white {
+  background-color: white;
+}
+
+
+.mat-row .mat-cell {
+  //border-bottom: 1px solid transparent;
+  //border-top: 1px solid transparent;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+
+
+
+

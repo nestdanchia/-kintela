@@ -1,0 +1,16 @@
+<form (ngSubmit)="onSubmit()" class="mat-elevation-z8">
+<div class="mat-subheading-2">Editar</div>
+
+<mat-form-field  *ngIf="comment?.toString()?.length<100">
+  <input matInput name="comment" [(ngModel)]="comment">
+</mat-form-field>
+
+<mat-form-field  *ngIf="comment?.toString()?.length>100">
+  <textarea matInput name="comment" [(ngModel)]="comment"></textarea>
+</mat-form-field>
+
+<div class="actions">
+  <button mat-button type="button" color="primary" (click)="onCancel()">CANCEL</button>
+  <button mat-button type="submit" color="primary">SAVE</button>
+</div>
+</form>

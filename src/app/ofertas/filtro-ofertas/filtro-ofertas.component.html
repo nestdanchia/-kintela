@@ -1,0 +1,85 @@
+<!--<h4>Por defecto se muestran las ofertas de {{actualYear}}</h4>-->
+
+<h5>Por defecto se muestran las ofertas de los 2 ultimos años</h5>
+
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>Filtros avanzados</mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Años</mat-label>
+      <mat-select formControlName="años" multiple placeholder="Años">
+        <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Descripción</mat-label>
+      <input formControlName="descripcion" matInput placeholder="Descripción" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" *ngIf="organismos$ | async as organismos">
+      <mat-label>Organismo</mat-label>
+      <mat-select formControlName="organismoId" placeholder="Organismo">
+        <mat-option *ngFor="let organismo of organismos" [value]="organismo.id">{{organismo.nombre}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Fª Presentación</mat-label>
+      <input formControlName="fechaPresentada" matInput [matDatepicker]="picker" placeholder="Fª Presentación" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Presentada</mat-label>
+      <mat-select formControlName="presentada" placeholder="Presentada">
+        <mat-option *ngFor="let opcion of opciones" [value]="opcion.value">
+          {{opcion.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" *ngIf="responsables$ | async as responsables">
+      <mat-label>Responsable Oferta</mat-label>
+      <mat-select formControlName="responsableOferta" placeholder="Responsable Oferta">
+        <mat-option *ngFor="let responsable of responsables" [value]="responsable.id">{{responsable.nombreCompleto}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" *ngIf="responsables$ | async as responsables">
+      <mat-label>Responsable Técnico</mat-label>
+      <mat-select formControlName="responsableTecnico" placeholder="Responsable Técnico">
+        <mat-option *ngFor="let responsable of responsables" [value]="responsable.id">{{responsable.nombreCompleto}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Origen</mat-label>
+      <mat-select formControlName="origen" placeholder="Origen">
+        <mat-option *ngFor="let origen of origenes" [value]="origen.value">{{origen.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div>
+      <mat-checkbox formControlName="adjudicada">Adjudicada</mat-checkbox>
+    </div>
+
+    <div class="contenedor-limpiar">
+      <button mat-flat-button (click)="limpiar()" color="warn">Limpiar</button>
+    </div>
+  </form>
+</mat-expansion-panel>
+
+<app-listado-ofertas [ofertas]="dataSource" [origen]="'ofertas'"></app-listado-ofertas>
+
+
+
+
+

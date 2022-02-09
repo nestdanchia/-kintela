@@ -1,0 +1,118 @@
+<h2>Buscar Avales</h2>
+
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>Filtros Avanzados</mat-panel-title>
+  </mat-expansion-panel-header>
+  <form [formGroup]="form">
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Oferta</mat-label>
+        <input formControlName="oferta" matInput placeholder="Oferta" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>contrato</mat-label>
+        <input formControlName="contrato" matInput placeholder="Contrato" />
+      </mat-form-field>
+    </div>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Fechas</mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="fechasAval">
+        <mat-form-field appearance="outline">
+          <mat-label>Fª Aval-Desde</mat-label>
+          <input formControlName="fechaAvalDesde" matInput [matDatepicker]="picker1" placeholder="Fª Aval-Desde" />
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Fª Aval-Hasta</mat-label>
+          <input formControlName="fechaAvalHasta" matInput [matDatepicker]="picker2" placeholder="Fª Aval-Hasta" />
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="fechasSolicitud">
+        <mat-form-field appearance="outline">
+          <mat-label>Fª Solicitud-Desde</mat-label>
+          <input formControlName="fechaSolicitudDesde" matInput [matDatepicker]="picker3" placeholder="Fª Solicitud-Desde" />
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <mat-datepicker #picker3></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Fª Solicitud-Hasta</mat-label>
+          <input formControlName="fechaSolicitudHasta" matInput [matDatepicker]="picker4" placeholder="Fª Solicitud-Hasta" />
+          <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+          <mat-datepicker #picker4></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="fechasAnulacion">
+        <mat-form-field appearance="outline">
+          <mat-label>Fª Anulación-Desde</mat-label>
+          <input formControlName="fechaAnulacionDesde" matInput [matDatepicker]="picker5" placeholder="Fª Anulación-Desde" />
+          <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+          <mat-datepicker #picker5></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Fª Anulación-Hasta</mat-label>
+          <input formControlName="fechaAnulacionHasta" matInput [matDatepicker]="picker6" placeholder="Fª Anulación-Hasta" />
+          <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+          <mat-datepicker #picker6></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Otros</mat-panel-title>
+      </mat-expansion-panel-header>
+
+
+      <mat-form-field appearance="outline" *ngIf="tipoAvales$ | async as tipoAvales">
+        <mat-label>Tipo Aval</mat-label>
+        <mat-select formControlName="tipoAval" placeholder="Tipo Aval">
+          <mat-option *ngFor="let tipo of tipoAvales" [value]="tipo.id">{{tipo.nombre}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" *ngIf="estadoAvales$ | async as estadoAvales">
+        <mat-label>Estado Aval</mat-label>
+        <mat-select formControlName="estadoAval" placeholder="Estado Aval">
+          <mat-option *ngFor="let estado of estadoAvales" [value]="estado.id">{{estado.nombre}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" *ngIf="avalistas$ | async as avalistas">
+        <mat-label>Avalista</mat-label>
+        <mat-select formControlName="avalista" placeholder="Avalista">
+          <mat-option *ngFor="let avalista of avalistas" [value]="avalista.id">{{avalista.nombre}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" *ngIf="clientes$ | async as clientes">
+        <mat-label>Clientes</mat-label>
+        <mat-select formControlName="cliente" placeholder="Cliente">
+          <mat-option *ngFor="let cliente of clientes" [value]="cliente.nombre">{{cliente.nombre}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" *ngIf="responsables$ | async as responsables">
+        <mat-label>Responsable</mat-label>
+        <mat-select formControlName="responsable" placeholder="Responsable">
+          <mat-option *ngFor="let responsable of responsables" [value]="responsable.id">{{responsable.nombreCompleto}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </mat-expansion-panel>
+  </form>
+</mat-expansion-panel>
+
+<app-listado-avales [avales]="dataSource"></app-listado-avales>
+

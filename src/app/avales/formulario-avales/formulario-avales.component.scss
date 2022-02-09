@@ -1,0 +1,25 @@
+.contenido{
+  display: flex;
+  margin-right: 2em;
+}
+.ofertas{
+  width: 500px;
+}
+
+.campos{
+  max-width: 500px;
+  padding-right: 1em;
+}
+
+button{
+  margin-right: 1rem;
+}
+
+mat-form-field{
+  width: 100%;
+  max-width: 500px;
+}
+
+mat-expansion-panel{
+  margin-bottom: 2em;
+}

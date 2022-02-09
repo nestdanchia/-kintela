@@ -1,0 +1,29 @@
+.contenedor{
+  max-height: 500px;
+}
+table {
+  width: 100%;
+}
+
+.row-is-clicked {
+  background-color: rgb(13, 241, 13);
+}
+
+.mat-row .mat-cell {
+  font-size: 12px;
+  cursor: pointer;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-column-select{
+  //width: 200px;
+  padding-right: 1em;
+  text-align: center;
+}
+
+.cabecera{
+  font-weight: bold;
+}

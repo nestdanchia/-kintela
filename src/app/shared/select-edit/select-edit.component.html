@@ -1,0 +1,16 @@
+<form (ngSubmit)="onSubmit()" class="mat-elevation-z8">
+<div class="mat-subheading-2">Editar</div>
+
+<div class="elementos" *ngIf="origen=='organismos'">
+  <app-buscador [modelo]="organismos" [origen]="origen" (elementoSeleccionado)='onElementoSeleccionado($event)'></app-buscador>
+</div>
+
+<div class="elementos" *ngIf="origen=='responsables'">
+  <app-buscador [modelo]="responsables" [origen]="origen" (elementoSeleccionado)='onElementoSeleccionado($event)'></app-buscador>
+</div>
+
+<div class="actions">
+  <button mat-button type="button" color="primary" (click)="onCancel()">CANCEL</button>
+  <button mat-button type="submit" color="primary">SAVE</button>
+</div>
+</form>
