@@ -28,7 +28,7 @@ const monicaFecha=new Date("2016-09-01T10:11:12.123456-0500")
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  i=true;
+
   modiSource:EMPLOYEE[]
  EMPLOYEE_DATA :EMPLOYEE[]=[
     {
@@ -63,9 +63,9 @@ this.FirstSource()
 date = new Date();
 FirstSource()
 { 
-  if(this.i===true){
+  if(this.dataSource==undefined){
     this.dataSource = this.EMPLOYEE_DATA;
-    this.i=false
+ 
   } else{
     this.dataSource =this.modiSource
   }
