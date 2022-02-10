@@ -82,7 +82,7 @@ console.log('aval:',aval.name)
   // let fecha = formatDate(fechaAval, 'dd-MM-yyyy', this.locale);
    // fecha es de tipo string
     // console.log('aval con los cambios', fecha);
-      this.modiSource=this.dataSource.map(obj=>obj.name==aval.name?{
+      this.modiSource=this.dataSource.map(obj=>obj.name==aval.name  && fechaAval !==undefined?{
        ...obj,inicio:fechaAval
       }:obj);
       this.changeSource(this.modiSource)
@@ -90,6 +90,7 @@ console.log('aval:',aval.name)
      
    }
    else{
+    this.modiSource=this.dataSource.map(obj=>obj)
      console.log('fechaAval',fechaAval)
      let snackBar = this.snackbar.open('La Fecha del aval debe ser de tipo fecha','fecha Aval' , { duration: 3000 });
    }
