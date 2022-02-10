@@ -3,10 +3,7 @@ import * as moment from 'moment';
 import { formatDate } from "@angular/common";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
-// https://techincent.com/angular-date-as-ago-minutes-hours-days-months-years-ago-pipe/
-// https://techincent.com/angular-material-table/
-// "DD/MM/YYYY"
-//MMMM Do YYYY, h:mm:ss a
+
 export interface EMPLOYEE  {
 
   name: string;
@@ -14,30 +11,15 @@ export interface EMPLOYEE  {
   cargo: string;
   inicio: Date;
 }
-const juanFecha=new Date("December 17, 1995 03:24:00");
-const pedroFecha=new Date("December 17, 1995 03:24:00");
-const monicaFecha=new Date("December 17, 1995 03:24:00")
-const  EMPLOYEE_DATA :EMPLOYEE[]=[
-  {
-    name: "Juan",
-    sueldo: 1000,
-    cargo: 'Gerente Sistemas',
-    inicio: juanFecha
-  },
-  {
-    name: "Pedro",
-    sueldo:200,
-    cargo: 'Empleado',
-    inicio: pedroFecha
-  },
-  {
-    name: "Monica",
-    sueldo: 500,
-    cargo: 'Jefa Sistemas',
-    inicio:monicaFecha
-  },
-]
-  
+
+const juanFecha=new Date("2016-09-01T10:10:12");
+console.log('Juan fecha',juanFecha)
+// ISO 8601
+const pedroFecha=new Date("2018-08-01T10:11:12");
+// RFC 2822 invalid
+// RFC 3339:
+const monicaFecha=new Date("2016-09-01T10:11:12.123456-0500")
+
   
 
 @Component({
@@ -46,37 +28,74 @@ const  EMPLOYEE_DATA :EMPLOYEE[]=[
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  i=true;
+  modiSource:EMPLOYEE[]
+ EMPLOYEE_DATA :EMPLOYEE[]=[
+    {
+      name: "Juan",
+      sueldo: 1000,
+      cargo: 'Gerente Sistemas',
+      inicio: juanFecha
+    },
+    {
+      name: "Pedro",
+      sueldo:200,
+      cargo: 'Empleado',
+      inicio: pedroFecha
+    },
+    {
+      name: "Monica",
+      sueldo: 500,
+      cargo: 'Jefa Sistemas',
+      inicio:monicaFecha
+    },
+  ]
+    
   displayedColumns: string[] = ['name', 'sueldo', 'cargo','inicio'];
-  dataSource = EMPLOYEE_DATA ;
+ dataSource :EMPLOYEE[]
   
   constructor(@Inject(LOCALE_ID) private locale: string, private snackbar: MatSnackBar) { }
   ngOnInit(): void {
-    const today = moment();
-console.log(today.format());
-    console.log(moment().format('HH:mm:ss')); // 16:13:11
-    console.log( moment.utc().format('HH:mm:ss') )
- const formato=moment().format('YYYY-MM-DD');
-console.log(formato);
-console.log(moment("2020-01-01", "YYYY-MM-DD").isValid()); // true
-console.log(moment("not-a-date", "YYYY-MM-DD").isValid()); // false
 
+this.FirstSource()
     
   }
-date = new Date()
+date = new Date();
+FirstSource()
+{ 
+  if(this.i===true){
+    this.dataSource = this.EMPLOYEE_DATA;
+    this.i=false
+  } else{
+    this.dataSource =this.modiSource
+  }
+
+}
+changeSource(newSource){
+   this.dataSource = newSource ;
+}
 updateFechaAval(aval: any, fechaAval:Date) {
-console.log(moment(fechaAval).isValid())
+console.log(moment(fechaAval).isValid());
+console.log('aval:',aval.name)
    console.log('Locale',moment.locale())
    if(moment(fechaAval).isValid()){
-     aval.fecha = formatDate(fechaAval, 'dd-MM-yyyy', this.locale);
-     console.log('aval con los cambios', aval.fecha);
+  // let fecha = formatDate(fechaAval, 'dd-MM-yyyy', this.locale);
+   // fecha es de tipo string
+    // console.log('aval con los cambios', fecha);
+      this.modiSource=this.dataSource.map(obj=>obj.name==aval.name?{
+       ...obj,inicio:fechaAval
+      }:obj);
+      this.changeSource(this.modiSource)
+     console.log(this.modiSource)
      
    }
    else{
      console.log('fechaAval',fechaAval)
      let snackBar = this.snackbar.open('La Fecha del aval debe ser de tipo fecha','fecha Aval' , { duration: 3000 });
    }
+   
  }
-
+ 
 }
 /*
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->

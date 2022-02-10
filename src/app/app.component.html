@@ -1,35 +1,33 @@
 <app-menu></app-menu>
-{{ date | dateFormat: 'L'}}
+
+
 <div class="container">
 <table mat-table [dataSource]="dataSource" #mytable class="mat-elevation-z8">
 
 
-    <!-- Position Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Name </th>
       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
 
-    <!-- Name Column -->
     <ng-container matColumnDef="sueldo">
       <th mat-header-cell *matHeaderCellDef>Sueldo</th>
       <td mat-cell *matCellDef="let element"> {{element.sueldo}} </td>
     </ng-container>
 
-    <!-- Weight Column -->
     <ng-container matColumnDef="cargo">
       <th mat-header-cell *matHeaderCellDef> Cargo </th>
       <td mat-cell *matCellDef="let element"> {{element.cargo}} </td>
     </ng-container>
 
-    <!-- Symbol Column <td mat-cell *matCellDef="let element"> {{element.inicio| dateFormat: 'L'}} </td> -->
+    
     <ng-container matColumnDef="inicio">
       <th mat-header-cell *matHeaderCellDef> Inicio </th>
       <td mat-cell *matCellDef="let element" [satPopoverAnchor]="p" (click)="p.open()">
-        {{element.inicio  | dateFormat: 'LL'}}
+        {{element.inicio  |  dateFormat: 'MMM DD YYYY'}}
         <sat-popover #p [hasBackdrop]="true" xAlign="start" yAlign="start"
           (closed)="updateFechaAval(element, $event)">
-        <inline-edit [value]="element?.inicio | dateFormat: 'l'"></inline-edit>
+        <inline-edit [value]="element?.inicio | date:'dd/MM/yyyy'"></inline-edit>
         </sat-popover>
       </td>
     </ng-container>
