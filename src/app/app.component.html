@@ -1,7 +1,8 @@
 <app-menu></app-menu>
 
-hora local:{{ date | dateFormat: 'D/M/YYYY'}}
+<!--hora local:{{ date | dateFormat: 'D/M/YYYY'}}
  Monica:{{ MonicaFecha| dateFormat: 'D/M/YYYY'}}
+-->
 <div class="container">
 <table mat-table [dataSource]="dataSource" #mytable class="mat-elevation-z8">
 
@@ -27,7 +28,7 @@ hora local:{{ date | dateFormat: 'D/M/YYYY'}}
       <td mat-cell *matCellDef="let element" [satPopoverAnchor]="p" (click)="p.open()">
         {{element.inicio  |  dateFormat: 'D/M/YYYY'}}
         <sat-popover #p [hasBackdrop]="true" xAlign="start" yAlign="start"
-          (closed)="updateFechaAval(element, $event)">
+          (closed)="UpdateFecha(element, $event)">
         <inline-edit [value]="element?.inicio | dateFormat: 'D/M/YYYY'"></inline-edit>
         </sat-popover>
       </td>
