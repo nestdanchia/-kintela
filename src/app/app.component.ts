@@ -4,9 +4,7 @@ import { formatDate } from "@angular/common";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatTable } from '@angular/material/table';
-// var a = moment.parseFormat('Friday 2018 27 april 10:28:10');
-// https://isolution.pro/es/t/momentjs/momentjs-quick-guide/momentjs-guia-rapida
-// time zone https://www.section.io/engineering-education/nodejs-date-and-time-objects-with-moment/
+
 export interface EMPLOYEE {
 
   name: string;
@@ -123,7 +121,7 @@ export class AppComponent implements OnInit {
 }
 
 
- //Date Tue Jan 08 2019 00:00:00 GMT-0300 (hora estándar de Argentina)
+ 
 ​
 
 
@@ -131,19 +129,3 @@ export class AppComponent implements OnInit {
      
 
 
-/*
-
-// Formato RFC2822
-//const juanFecha=new Date("Thu, 01 Feb 2018 18:30:00 GMT");
-const juanFecha=moment(new Date("2016-03-01T18:30:00.000Z"),'YYYY MM DD  HH:mm:ss ZZ').toDate();
-//const juanFecha=moment('2014-02-27T10:00:00','D/M/YYYY').toDate()2016-08-01T10:11:12.123456-0500
-console.log('Juan fecha',juanFecha)
-// ISO 8601 año-mes-día horas-minutos-segundos
-//// Formato iso:
-const pedroFecha=moment(new Date("2019-04-01T18:30:00.000Z"),'YYYY MM DD  HH:mm:ss ZZ').toDate();
-// RFC 2822 invalid
-// formato ISO 
-const monicaFecha=moment(new Date("2018-02-01T18:30:00.000Z"),'YYYY MM DD  HH:mm:ss ZZ').toDate();
-
-
-*/
